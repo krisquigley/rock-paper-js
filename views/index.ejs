@@ -24,17 +24,31 @@
           </div>
         </div>
       </div>
-      <div class='row' data-behavior='results'>
-        <div class='col-md-6'>
-          <div>
-            <p>
-              <strong><%= playerOne.name %></strong><br />
-              <%= playerOne.move %>
-            </p>
-            <p>
-              <strong><%= playerTwo.name %></strong><br />
-              <%= playerTwo.move %>
-            </p>
+      <div data-behavior='results'>
+        <div class='row text-center'>
+          <div class='col-xs-4'>
+            <h3><%= playerOne.name || 'You' %></h3>
+          </div>
+          <div class='col-xs-4'>
+            <h3><small>Vs</small></h3>
+          </div>
+          <div class='col-xs-4'>
+            <h3><%= playerTwo.name || 'Me' %></h3>
+          </div>
+        </div>
+        <div class='row text-center'>
+          <div class='col-xs-4'>
+            <h4><%= playerOne.move %></h4>
+          </div>
+          <div class='col-xs-4'>
+            &nbsp; 
+          </div>
+          <div class='col-xs-4'>
+            <h4><%= playerTwo.move %></h4>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-xs-12'>
             <p>
               <% if (winner === null) { %>
                 Draw

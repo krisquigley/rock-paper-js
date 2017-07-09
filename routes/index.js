@@ -24,7 +24,7 @@ router.post('/', urlencodedParser, (req, res) => {
   options.playerTwo = playerTwo
   options.winner = determineWinner(playerOne, playerTwo)
   let win = false
-  if (options.winner.name === playerTwo.name) {
+  if (options.winner && options.winner.name === playerTwo.name) {
     win = true
   }
   db.Move.create({
