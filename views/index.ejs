@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class='col-xs-12'>
+          <div class="jumbotron">
+            <h1><%= title %></h1>
+            <p>Welcome to <%= title %></p>
+            <h2 data-behavior='countdown' style='display: none'>3</h2>
+            <button data-behavior='start' onClick='startGame()' class='btn btn-success btn-lg'>Start</button>
+            <form method='post' action='/' style='display: none' data-behavior='movePicker'>
+              <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                <input type='submit' name='move' value='🗿' class='btn btn-default btn-lg'/>
+                <input type='submit' name='move' value='📄' class='btn btn-default btn-lg'/>
+                <input type='submit' name='move' value='✂' class='btn btn-default btn-lg'/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class='row' data-behavior='results'>
+        <div class='col-md-6'>
+          <div>
+            <p>
+              <strong><%= playerOne.name %></strong><br />
+              <%= playerOne.move %>
+            </p>
+            <p>
+              <strong><%= playerTwo.name %></strong><br />
+              <%= playerTwo.move %>
+            </p>
+            <p>
+              <% if (winner === null) { %>
+                Draw
+              <% } else if (winner === undefined) { %>
+                Stop cheating!
+              <% } else if (winner) { %> 
+                <%= winner.name %> won!
+              <% } %>
+            <p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='/javascripts/countdown.js'></script>
+    </body>
+  </html>
