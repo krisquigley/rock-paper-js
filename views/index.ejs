@@ -10,21 +10,44 @@
       <div class="row">
         <div class='col-xs-12'>
           <div class="jumbotron">
-            <h1><%= title %></h1>
-            <p>Welcome to <%= title %></p>
-            <h2 data-behavior='countdown' style='display: none'>3</h2>
-            <button data-behavior='start' onClick='startGame()' class='btn btn-success btn-lg'>Start</button>
-            <form method='post' action='/' style='display: none' data-behavior='movePicker'>
-              <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                <input type='submit' name='move' value='🗿' class='btn btn-default btn-lg'/>
-                <input type='submit' name='move' value='📄' class='btn btn-default btn-lg'/>
-                <input type='submit' name='move' value='✂' class='btn btn-default btn-lg'/>
+            <div class="row">
+              <div class='col-xs-6'>
+                <h1><%= title %></h1>
+                <p>Welcome to <%= title %></p>
+                <h2 data-behavior='countdown' style='display: none'>3</h2>
+                <div data-behavior='buttons'>
+                  <button data-behavior='start' onClick='startGame()' class='btn btn-success btn-lg'>Start</button>
+                  <button data-behavior='reset' onClick='reset()' class='btn btn-warning btn-lg'>Reset</button>
+                </div>
+                <form method='post' action='/' style='display: none' data-behavior='movePicker'>
+                  <input type="hidden" name="playerOneTotalScore" value=<%= playerOne.totalScore || 0 %> />
+                  <input type="hidden" name="playerTwoTotalScore" value=<%= playerTwo.totalScore || 0 %> /> 
+                  <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                    <button type='submit' name='move' value='r' class='btn btn-default btn-lg'>👊</button>
+                    <button type='submit' name='move' value='p' class='btn btn-default btn-lg'>✋</button>
+                    <button type='submit' name='move' value='s' class='btn btn-default btn-lg'>✌️</button>
+                  </div>
+                </form>
               </div>
-            </form>
+              <div class='col-xs-6 text-right' data-behavior='result' style='display: hidden'>
+                <% if (winner === null) { %>
+                  <h1>🏳️</h1>
+                  <p>Draw</p>
+                <% } else if (winner === undefined) { %>
+                  wtf?
+                <% } else if (winner.name === playerOne.name) { %>
+                  <h1>👍</h1>
+                  <p data-behavior='smackTalk-lose'></p>
+                <% } else if (winner.name === playerTwo.name) { %> 
+                  <h1>💥</h1>
+                  <p data-behavior='smackTalk-win'></p>
+                <% } %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div data-behavior='results'>
+      <div data-behavior='results' style='display: none'>
         <div class='row text-center'>
           <div class='col-xs-4'>
             <h3><%= playerOne.name || 'You' %></h3>
@@ -38,30 +61,37 @@
         </div>
         <div class='row text-center'>
           <div class='col-xs-4'>
-            <h4><%= playerOne.move %></h4>
+            <h4><%= playerOne.convertedMove %></h4>
           </div>
           <div class='col-xs-4'>
             &nbsp; 
           </div>
           <div class='col-xs-4'>
-            <h4><%= playerTwo.move %></h4>
+            <h4><%= playerTwo.convertedMove %></h4>
           </div>
         </div>
-        <div class='row'>
-          <div class='col-xs-12'>
-            <p>
-              <% if (winner === null) { %>
-                Draw
-              <% } else if (winner === undefined) { %>
-                Stop cheating!
-              <% } else if (winner) { %> 
-                <%= winner.name %> won!
-              <% } %>
-            <p>
-          </div>
+      </div>
+      <div class='row'>
+        <div class='col-xs-12 text-center'>
+          <h2>Results</h2>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-xs-6 text-center'>
+          <h4>You</h4>
+          <span data-behavior='playerOneTotalScore'></span><br/>
+          <span data-behavior='playerOnePercentage'></span>
+        </div>
+        <div class='col-xs-6 text-center'>
+          <h4><%= playerTwo.name %></h4>
+          <span data-behavior='playerTwoTotalScore'></span><br/>
+          <span data-behavior='playerTwoPercentage'></span>
         </div>
       </div>
     </div>
     <script src='/javascripts/countdown.js'></script>
+    <script src='/javascripts/reset.js'></script>
+    <script src='/javascripts/scores.js'></script>
+    <script src='/javascripts/smackTalk.js'></script>
     </body>
   </html>
