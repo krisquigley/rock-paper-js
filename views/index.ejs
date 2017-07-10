@@ -10,6 +10,30 @@
       <div class="row">
         <div class='col-xs-12'>
           <div class="jumbotron">
+            <div class='row text-center'>
+              <div class='col-xs-4'>
+                <h3><%= playerOne.name %></h3>
+              </div>
+              <div class='col-xs-4'>
+                <h3><small>Vs</small></h3>
+              </div>
+              <div class='col-xs-4'>
+                <h3><%= playerTwo.name %></h3>
+              </div>
+            </div>
+            <div style='margin-bottom: 5rem'>
+              <div class='row text-center' data-behavior='moves'>
+                <div class='col-xs-4'>
+                  <h4><%= playerOne.convertedMove %></h4>
+                </div>
+                <div class='col-xs-4'>
+                  &nbsp; 
+                </div>
+                <div class='col-xs-4'>
+                  <h4><%= playerTwo.convertedMove %></h4>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class='col-xs-6'>
                 <h1><%= title %></h1>
@@ -47,30 +71,6 @@
           </div>
         </div>
       </div>
-      <div data-behavior='results' style='display: none'>
-        <div class='row text-center'>
-          <div class='col-xs-4'>
-            <h3><%= playerOne.name || 'You' %></h3>
-          </div>
-          <div class='col-xs-4'>
-            <h3><small>Vs</small></h3>
-          </div>
-          <div class='col-xs-4'>
-            <h3><%= playerTwo.name || 'Me' %></h3>
-          </div>
-        </div>
-        <div class='row text-center'>
-          <div class='col-xs-4'>
-            <h4><%= playerOne.convertedMove %></h4>
-          </div>
-          <div class='col-xs-4'>
-            &nbsp; 
-          </div>
-          <div class='col-xs-4'>
-            <h4><%= playerTwo.convertedMove %></h4>
-          </div>
-        </div>
-      </div>
       <div class='row'>
         <div class='col-xs-12 text-center'>
           <h2>Results</h2>
@@ -78,12 +78,12 @@
       </div>
       <div class='row'>
         <div class='col-xs-6 text-center'>
-          <h4>You</h4>
+          <h4><%= playerOne.name || 'You' %></h4>
           <span data-behavior='playerOneTotalScore'></span><br/>
           <span data-behavior='playerOnePercentage'></span>
         </div>
         <div class='col-xs-6 text-center'>
-          <h4><%= playerTwo.name %></h4>
+          <h4><%= playerTwo.name || 'Master Rock' %></h4>
           <span data-behavior='playerTwoTotalScore'></span><br/>
           <span data-behavior='playerTwoPercentage'></span>
         </div>
